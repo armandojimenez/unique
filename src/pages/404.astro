@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import { landing } from '../i18n/index.mjs';
+import { BASE, asset } from '../config.mjs';
+
+const locale = 'en';
+const s = landing(locale);
+---
+
+<Base locale={locale} title="Page not found. Unique" description={s.meta.description} noindex>
+  <main class="nf">
+    <img src={asset('/app/images/svgIcons/unique.svg')} alt="" width="72" height="72" aria-hidden="true" />
+    <h1>404</h1>
+    <p>This page fluttered away. Your daily compliments are still here.</p>
+    <a class="btn-pill" href={`${BASE}/`}>Unique</a>
+  </main>
+</Base>
+
+<style>
+  .nf {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    text-align: center;
+    background: linear-gradient(180deg, var(--blush-0) 0%, var(--blush-1) 100%);
+    padding: 24px;
+  }
+
+  .nf img {
+    transform: rotate(-8deg);
+  }
+
+  h1 {
+    font-weight: 700;
+    font-size: 88px;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  p {
+    color: var(--ink-soft);
+    font-size: 17px;
+    max-width: 38ch;
+  }
+</style>

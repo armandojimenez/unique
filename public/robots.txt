@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://armandojimenez.dev/unique/sitemap-index.xml

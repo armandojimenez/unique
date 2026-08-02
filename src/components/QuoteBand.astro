@@ -1,0 +1,69 @@
+---
+import { asset } from '../config.mjs';
+
+const { text, tone = 'light' } = Astro.props;
+---
+
+<aside class={`quote-band tone-${tone}`}>
+  <div class="container inner">
+    <img
+      src={asset('/app/images/svgIcons/unique.svg')}
+      alt=""
+      width="40"
+      height="40"
+      loading="lazy"
+      aria-hidden="true"
+    />
+    <blockquote>
+      <p>“{text}”</p>
+    </blockquote>
+  </div>
+</aside>
+
+<style>
+  .quote-band {
+    padding: clamp(58px, 8vh, 96px) 0;
+  }
+
+  .tone-light {
+    color: var(--ink);
+    background: linear-gradient(135deg, var(--mint), var(--sky));
+  }
+
+  .tone-raspberry {
+    color: #fff;
+    background: linear-gradient(145deg, #a5124a, #6d0b2f);
+  }
+
+  .tone-night {
+    color: #fff;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(183, 139, 232, 0.18), transparent 32%),
+      linear-gradient(145deg, #27112b, #130a17);
+  }
+
+  .inner {
+    text-align: center;
+  }
+
+  img {
+    width: 38px;
+    height: auto;
+    margin: 0 auto 20px;
+  }
+
+  .tone-raspberry img,
+  .tone-night img {
+    filter: brightness(0) invert(1);
+    opacity: 0.82;
+  }
+
+  p {
+    max-width: 920px;
+    margin-inline: auto;
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 4.3vw, 56px);
+    line-height: 1.28;
+    text-wrap: balance;
+  }
+</style>

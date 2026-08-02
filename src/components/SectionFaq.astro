@@ -1,0 +1,125 @@
+---
+import { landing } from '../i18n/index.mjs';
+import { asset } from '../config.mjs';
+
+const { locale = 'en' } = Astro.props;
+const s = landing(locale);
+---
+
+<section id="faq" class="faq">
+  <div class="container inner">
+    <img
+      class="butterfly"
+      src={asset('/app/images/svgIcons/unique.svg')}
+      alt=""
+      width="34"
+      height="34"
+      loading="lazy"
+      aria-hidden="true"
+    />
+    <h2>{s.faq.title}</h2>
+    <div class="items">
+      {
+        s.faq.items.map((item) => (
+          <details>
+            <summary>
+              <span>{item.q}</span>
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                aria-hidden="true"
+              >
+                <path d="M12 5v14M5 12h14"></path>
+              </svg>
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    padding: clamp(70px, 10vh, 120px) 0;
+    background: linear-gradient(180deg, var(--blush-1), var(--blush-0));
+  }
+
+  .inner {
+    max-width: 780px;
+  }
+
+  .butterfly {
+    width: 34px;
+    height: auto;
+    margin: 0 auto 14px;
+    filter: sepia(1) saturate(5) hue-rotate(290deg);
+    transform: rotate(-9deg);
+  }
+
+  h2 {
+    text-align: center;
+    color: var(--ink);
+    font-size: clamp(32px, 4vw, 52px);
+    letter-spacing: -0.025em;
+  }
+
+  .items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  details {
+    overflow: hidden;
+    border: 1px solid rgba(59, 16, 34, 0.08);
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 5px 18px rgba(59, 16, 34, 0.06);
+  }
+
+  details[open] {
+    border-color: rgba(165, 18, 74, 0.28);
+  }
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 19px 22px;
+    color: var(--ink);
+    font-size: 16px;
+    font-weight: 700;
+    list-style: none;
+    cursor: pointer;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary svg {
+    flex: 0 0 auto;
+    color: var(--raspberry);
+    transition: transform 220ms ease;
+  }
+
+  details[open] summary svg {
+    transform: rotate(45deg);
+  }
+
+  details p {
+    padding: 0 22px 21px;
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.72;
+  }
+</style>

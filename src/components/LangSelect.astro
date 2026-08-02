@@ -1,0 +1,149 @@
+---
+// Desktop language selector. It renders only after a second locale is
+// publication-approved, so the selector never exposes a dead route.
+import { PUBLISHED_LOCALES, ENDONYMS, HREFLANG, localeUrl } from '../i18n/index.mjs';
+
+const { locale = 'en', label } = Astro.props;
+---
+
+<div class="lang" data-lang>
+  <button class="lang-btn" type="button" aria-expanded="false" aria-label={label}>
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+      <circle cx="12" cy="12" r="9"></circle>
+      <path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"></path>
+    </svg>
+    <span>{ENDONYMS[locale]}</span>
+    <svg class="chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+      <path d="m6 9 6 6 6-6"></path>
+    </svg>
+  </button>
+  <div class="lang-menu" hidden>
+    {PUBLISHED_LOCALES.map((candidate) => (
+      <a
+        href={localeUrl(candidate)}
+        lang={HREFLANG[candidate]}
+        hreflang={HREFLANG[candidate]}
+        aria-current={candidate === locale ? 'page' : undefined}
+      >
+        {ENDONYMS[candidate]}
+        {candidate === locale && (
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true">
+            <path d="m4.5 12.5 5 5 10-11"></path>
+          </svg>
+        )}
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+  .lang {
+    position: relative;
+  }
+
+  .lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 13px;
+    border: 1px solid rgba(59, 16, 34, 0.18);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    background: none;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .lang-btn:hover,
+  .lang-btn[aria-expanded='true'] {
+    border-color: rgba(59, 16, 34, 0.38);
+    color: var(--ink);
+  }
+
+  .chev {
+    transition: transform 0.18s ease;
+  }
+
+  .lang-btn[aria-expanded='true'] .chev {
+    transform: rotate(180deg);
+  }
+
+  .lang-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 120;
+    display: flex;
+    min-width: 190px;
+    flex-direction: column;
+    padding: 8px;
+    border: 1px solid rgba(59, 16, 34, 0.1);
+    border-radius: 16px;
+    background: var(--paper);
+    box-shadow: 0 18px 44px rgba(59, 16, 34, 0.16);
+  }
+
+  .lang-menu[hidden] {
+    display: none;
+  }
+
+  .lang-menu a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    color: var(--ink-soft);
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  .lang-menu a:hover {
+    color: var(--ink);
+    background: var(--blush-1);
+  }
+
+  .lang-menu a[aria-current='page'] {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .lang-menu svg {
+    color: var(--raspberry);
+  }
+
+  @media (max-width: 900px) {
+    .lang {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  for (const root of document.querySelectorAll('[data-lang]')) {
+    const button = root.querySelector('.lang-btn') as HTMLButtonElement | null;
+    const menu = root.querySelector('.lang-menu') as HTMLElement | null;
+    if (!button || !menu) continue;
+
+    const close = () => {
+      button.setAttribute('aria-expanded', 'false');
+      menu.hidden = true;
+    };
+    button.addEventListener('click', () => {
+      const open = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', String(!open));
+      menu.hidden = open;
+    });
+    document.addEventListener('click', (event) => {
+      if (!root.contains(event.target as Node)) close();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !menu.hidden) {
+        close();
+        button.focus();
+      }
+    });
+  }
+</script>

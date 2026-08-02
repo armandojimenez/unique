@@ -1,0 +1,151 @@
+---
+import {
+  landing,
+  PUBLISHED_LOCALES,
+  ENDONYMS,
+  HREFLANG,
+  localeUrl,
+} from '../i18n/index.mjs';
+import {
+  INSTAGRAM_URL,
+  FACEBOOK_URL,
+  legalUrls,
+  asset,
+} from '../config.mjs';
+
+const { locale = 'en' } = Astro.props;
+const s = landing(locale);
+const year = new Date().getFullYear();
+const legal = legalUrls(locale);
+---
+
+<footer class="site-footer">
+  <div class="container top">
+    <div class="brand-col">
+      <a class="brand" href="#top" aria-label="Unique">
+        <img
+          src={asset('/app/images/svgIcons/unique_alt_dark_en.svg')}
+          alt="Unique"
+          width="132"
+          height="40"
+          loading="lazy"
+        />
+      </a>
+      <p>{s.footer.tagline}</p>
+    </div>
+    <nav class="links" aria-label={s.a11y.footerNav}>
+      <a href={INSTAGRAM_URL} rel="noopener">Instagram</a>
+      <a href={FACEBOOK_URL} rel="noopener">Facebook</a>
+      <a href="#" data-contact-open>{s.contact.open}</a>
+      <a href={legal.privacy}>{s.footer.privacy}</a>
+      <a href={legal.terms}>{s.footer.terms}</a>
+    </nav>
+  </div>
+  {PUBLISHED_LOCALES.length > 1 && (
+    <nav class="container langs" aria-label={s.a11y.language}>
+      {PUBLISHED_LOCALES.map((candidate) => (
+        <a
+          href={localeUrl(candidate)}
+          lang={HREFLANG[candidate]}
+          hreflang={HREFLANG[candidate]}
+          aria-current={candidate === locale ? 'page' : undefined}
+        >
+          {ENDONYMS[candidate]}
+        </a>
+      ))}
+    </nav>
+  )}
+  <div class="container bottom">
+    <span>{year} &copy; Armando Jiménez. {s.footer.rights}</span>
+    {PUBLISHED_LOCALES.length === 1 && <span>{ENDONYMS[locale]}</span>}
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding: 50px 0 28px;
+    color: rgba(255, 245, 249, 0.74);
+    background: #160b12;
+  }
+
+  .top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    display: block;
+  }
+
+  .brand img {
+    width: 132px;
+    height: auto;
+  }
+
+  .brand-col p {
+    max-width: 34ch;
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    font-size: 14px;
+  }
+
+  .links a {
+    opacity: 0.84;
+    text-decoration: none;
+  }
+
+  .links a:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+
+  .langs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    margin-top: 30px;
+    font-size: 13px;
+  }
+
+  .langs a {
+    color: rgba(255, 245, 249, 0.62);
+    text-decoration: none;
+  }
+
+  .langs a:hover {
+    color: #fff5f9;
+    text-decoration: underline;
+  }
+
+  .langs a[aria-current='page'] {
+    color: #fff5f9;
+    font-weight: 700;
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 30px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255, 245, 249, 0.14);
+    color: rgba(255, 245, 249, 0.62);
+    font-size: 13px;
+  }
+
+  @media (max-width: 620px) {
+    .bottom {
+      flex-direction: column;
+    }
+  }
+</style>

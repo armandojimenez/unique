@@ -1,0 +1,109 @@
+---
+// Optional first-visit language suggestion. It never redirects automatically
+// and is only mounted after another locale is approved for publication.
+import { LANG_BANNERS, PUBLISHED_LOCALES, localeUrl } from '../i18n/index.mjs';
+import { BASE } from '../config.mjs';
+
+const { locale = 'en' } = Astro.props;
+const data = {
+  page: locale,
+  locales: PUBLISHED_LOCALES,
+  banners: Object.fromEntries(
+    PUBLISHED_LOCALES.map((candidate) => [candidate, LANG_BANNERS[candidate]])
+  ),
+  urls: Object.fromEntries(
+    PUBLISHED_LOCALES.map((candidate) => [candidate, localeUrl(candidate)])
+  ),
+};
+---
+
+<div class="lang-banner" data-lang-banner data-cfg={JSON.stringify(data)} hidden>
+  <p><span data-banner-text></span></p>
+  <div class="actions">
+    <a class="go" data-banner-go href={`${BASE}/`}></a>
+    <button class="dismiss" type="button" data-banner-dismiss></button>
+  </div>
+</div>
+
+<style>
+  .lang-banner {
+    position: fixed;
+    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    left: 16px;
+    z-index: 150;
+    display: flex;
+    width: fit-content;
+    max-width: calc(100vw - 32px);
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-inline: auto;
+    padding: 12px 22px;
+    border-radius: 16px;
+    color: var(--blush-0);
+    background: var(--ink);
+    box-shadow: 0 18px 44px rgba(42, 11, 26, 0.3);
+    font-size: 14px;
+  }
+
+  .lang-banner[hidden] {
+    display: none;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .go {
+    color: var(--blush-0);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .dismiss {
+    padding: 4px 12px;
+    border: 1px solid rgba(255, 247, 250, 0.35);
+    border-radius: 999px;
+    color: rgba(255, 247, 250, 0.86);
+    background: none;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  for (const element of document.querySelectorAll('[data-lang-banner]')) {
+    const banner = element as HTMLElement;
+    const config = JSON.parse(banner.dataset.cfg!);
+    try {
+      if (!localStorage.getItem('unique-lang-banner-dismissed')) {
+        const browserLocale = (navigator.languages?.[0] ?? navigator.language ?? '').toLowerCase();
+        const base = browserLocale.split('-')[0];
+        const target = config.locales.includes(base) ? base : null;
+        if (target && target !== config.page) {
+          const copy = config.banners[target];
+          banner.querySelector('[data-banner-text]')!.textContent = copy.text;
+          const go = banner.querySelector('[data-banner-go]') as HTMLAnchorElement;
+          go.textContent = copy.cta;
+          go.href = config.urls[target];
+          go.lang = target;
+          const dismiss = banner.querySelector('[data-banner-dismiss]') as HTMLButtonElement;
+          dismiss.textContent = copy.dismiss;
+          dismiss.addEventListener('click', () => {
+            localStorage.setItem('unique-lang-banner-dismissed', '1');
+            banner.hidden = true;
+          });
+          banner.hidden = false;
+        }
+      }
+    } catch {
+      // Storage is unavailable. Keep the banner hidden.
+    }
+  }
+</script>

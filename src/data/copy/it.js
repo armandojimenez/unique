@@ -1,0 +1,111 @@
+// Italiano — informal "tu", the register Italian self-care apps use.
+//
+// Gender rule (GLOBAL_EXPANSION_PLAN §3–5): no "/a", no "*", no schwa, no
+// doublets. Italian adjectives agree, so every line uses second-person
+// verbs and abstract nouns ("la tua gentilezza", "la tua forza") that
+// never agree with the reader.
+export default {
+  hook: { hero: 'Complimenti che\nti vedono davvero' },
+  reminders: {
+    hero: 'Parole gentili\ntutto il giorno',
+    date: 'Lunedì 1 gennaio',
+    time: '11:11',
+    whens: ['adesso', '11:11', '09:30'],
+  },
+  categories: { hero: 'Un complimento per\nogni parte di te' },
+  widgets: {
+    hero: 'Il tuo valore sulla\nschermata Home',
+    heroAndroid: 'Il tuo valore sulla\nschermata Home',
+  },
+  themes: { hero: 'Ogni messaggio\na modo tuo', sample: 'Aa' },
+  dark: { hero: 'Con te,\ngiorno e notte' },
+  myown: {
+    hero: 'Scrivi le parole\nche vuoi leggere',
+    dialogTyped: 'La tua presenza fa sentire importanti le persone.',
+    rows: [
+      { text: 'Ho il diritto di festeggiare la strada che ho fatto.', date: '22 luglio' },
+      { text: 'Riposare non è arrendersi.', date: '15 luglio' },
+      {
+        text: 'Vali tutto l’amore che regali agli altri.',
+        author: 'Mamma',
+        date: '7 luglio',
+      },
+      { text: 'La mia dolcezza non è mai stata una debolezza.', date: '27 giugno' },
+      { text: 'Mi piace la persona che sto diventando.', date: '18 giugno' },
+      {
+        text: 'Anche la gentilezza verso di te conta come gentilezza.',
+        author: 'Sam',
+        date: '9 giugno',
+      },
+      { text: 'Non devo guadagnarmi la mia stessa approvazione.', date: '1 giugno' },
+    ],
+  },
+  share: { hero: 'Trasforma i complimenti\nin arte da condividere' },
+  practice: { hero: 'Fai del volerti bene\nuna pratica quotidiana' },
+  proof: {
+    hero: 'Lo amano le persone\nche ne avevano bisogno',
+    heroAndroid: 'Lo amano persone\nin tutto il mondo',
+    storeIos: 'sull’App Store',
+    storeAndroid: 'su Google Play',
+    familyTitle: 'Fatto con amore, con la famiglia Believe',
+    familySub: 'Oltre 1 milione di download tra le nostre app',
+  },
+  feature: { hero: 'Complimenti ogni giorno\ne amore per sé', qOpen: '«', qClose: '»' },
+
+  ui: {
+    app_name: 'Unique',
+    categories: 'Categorie',
+    reset: 'Reimposta',
+    themes: 'Scegli la tua arte',
+    make_theme: 'Crea un tema tuo',
+    settings: { my_favorites_title: 'I miei preferiti' },
+    my_own: {
+      title: 'I miei messaggi',
+      add: 'Aggiungi',
+      added: 'Aggiunto: {}',
+      add_dialog_title: 'Aggiungi la tua ispirazione!',
+      save: 'Salva',
+      author_hint: 'Autore (facoltativo)',
+    },
+    backup: { backup_and_restore_button: 'Backup e ripristino' },
+    share: {
+      story: 'Storia',
+      square: 'Quadrato',
+      save_image: 'Salva',
+      copy_text: 'Copia',
+      more: 'Altro',
+    },
+    magic_center: { practice: { day: 'Giorno', night: 'Notte' } },
+    everything: { title: 'La tua unicità' },
+    favorites: { title: 'I miei preferiti' },
+    mine: { title: 'I miei messaggi' },
+    smart: { title: 'La tua intelligenza' },
+    resilience: { title: 'La tua resilienza' },
+    beauty: { title: 'La tua bellezza' },
+    kindness: { title: 'La tua gentilezza' },
+    in_love: { title: 'Parole d’amore' },
+    amazing: { title: 'Il tuo lato speciale' },
+    gratitude: { title: 'La tua gratitudine' },
+    creativity: { title: 'La tua creatività' },
+    soul: { title: 'La tua anima eterna' },
+    confidence: { title: 'Frasi sulla fiducia' },
+    future_self: { title: 'Messaggio dal futuro' },
+    healthy: { title: 'Il tuo corpo in salute' },
+    self_love: { title: 'Frasi sull’amore per sé' },
+    optimism: { title: 'Il tuo ottimismo' },
+    smile: { title: 'Il tuo sorriso' },
+    angels: { title: 'Dai tuoi angeli' },
+    self_care: { title: 'Frasi sulla cura di sé' },
+  },
+
+  messages: {
+    'amazing.9': 'Hai un modo tutto tuo di guardare il mondo.',
+    'creativity.4': 'Il tuo spirito creativo è una boccata d’aria fresca.',
+    'resilience.6': 'Il modo in cui ti rialzi dopo una caduta è incredibile.',
+    'kindness.14': 'La tua gentilezza è un dono che non smette mai di dare.',
+    'optimism.5': 'Il tuo ottimismo è contagioso e risolleva chi ti sta intorno.',
+    'optimism.11': 'Il tuo spirito ottimista è un dono che fai al mondo.',
+    'confidence.168': 'La tua energia ti presenta prima ancora che tu parli.',
+    'soul.7': 'La tua anima danza di gioia e sparge felicità ovunque tu vada.',
+  },
+};

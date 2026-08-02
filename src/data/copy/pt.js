@@ -1,0 +1,111 @@
+// Português (pt-BR) — Brazilian Portuguese, the app's third shipped locale.
+// Voice: warm and close, "você" throughout.
+//
+// Gender rule (GLOBAL_EXPANSION_PLAN §3–5): one natural, gender-universal
+// target. No "o(a)", no "@", no "x", no doublets. Participles that would
+// gender the reader ("visto/vista", "amado/amada") are rewritten.
+export default {
+  hook: { hero: 'Elogios que\nenxergam você' },
+  reminders: {
+    hero: 'Palavras carinhosas\no dia inteiro',
+    date: 'Segunda-feira, 1 de janeiro',
+    time: '11:11',
+    whens: ['agora', '11:11', '09:30'],
+  },
+  categories: { hero: 'Um elogio para\ncada parte de você' },
+  widgets: {
+    hero: 'Seu valor na\ntela de início',
+    heroAndroid: 'Seu valor na\ntela de início',
+  },
+  themes: { hero: 'Deixe cada mensagem\ncom a sua cara', sample: 'Aa' },
+  dark: { hero: 'Com você,\ndia e noite' },
+  myown: {
+    hero: 'Escreva as palavras\nque você precisa ler',
+    dialogTyped: 'Sua presença faz as pessoas se sentirem valorizadas.',
+    rows: [
+      { text: 'Tenho o direito de celebrar o quanto já caminhei.', date: '22 de julho' },
+      { text: 'Descansar não é desistir.', date: '15 de julho' },
+      {
+        text: 'Você vale todo o amor que distribui por aí.',
+        author: 'Mãe',
+        date: '7 de julho',
+      },
+      { text: 'Minha delicadeza nunca me deixou frágil.', date: '27 de junho' },
+      { text: 'Gosto da pessoa que estou me tornando.', date: '18 de junho' },
+      {
+        text: 'Ter carinho consigo também conta como ter carinho.',
+        author: 'Sam',
+        date: '9 de junho',
+      },
+      { text: 'Não preciso conquistar a minha própria aprovação.', date: '1 de junho' },
+    ],
+  },
+  share: { hero: 'Transforme elogios\nem arte pra compartilhar' },
+  practice: { hero: 'Faça do amor-próprio\numa prática diária' },
+  proof: {
+    hero: 'Quem mais precisava\nse apaixonou',
+    heroAndroid: 'Gente do mundo\ninteiro adora',
+    storeIos: 'na App Store',
+    storeAndroid: 'no Google Play',
+    familyTitle: 'Feito com amor, com a família Believe',
+    familySub: 'Mais de 1 milhão de downloads entre nossos apps',
+  },
+  feature: { hero: 'Elogios diários\ne amor-próprio', qOpen: '“', qClose: '”' },
+
+  ui: {
+    app_name: 'Unique',
+    categories: 'Categorias',
+    reset: 'Redefinir',
+    themes: 'Escolha sua arte',
+    make_theme: 'Criar tema próprio',
+    settings: { my_favorites_title: 'Meus favoritos' },
+    my_own: {
+      title: 'Minhas mensagens',
+      add: 'Adicionar',
+      added: 'Adicionado: {}',
+      add_dialog_title: 'Adicione sua inspiração!',
+      save: 'Salvar',
+      author_hint: 'Autor (opcional)',
+    },
+    backup: { backup_and_restore_button: 'Backup e restauração' },
+    share: {
+      story: 'Story',
+      square: 'Quadrado',
+      save_image: 'Salvar',
+      copy_text: 'Copiar',
+      more: 'Mais',
+    },
+    magic_center: { practice: { day: 'Dia', night: 'Noite' } },
+    everything: { title: 'Sua singularidade' },
+    favorites: { title: 'Meus favoritos' },
+    mine: { title: 'Minhas mensagens' },
+    smart: { title: 'Sua inteligência' },
+    resilience: { title: 'Sua resiliência' },
+    beauty: { title: 'Sua beleza' },
+    kindness: { title: 'Sua bondade' },
+    in_love: { title: 'Amor para você' },
+    amazing: { title: 'Seu lado incrível' },
+    gratitude: { title: 'Sua gratidão' },
+    creativity: { title: 'Sua criatividade' },
+    soul: { title: 'Sua alma eterna' },
+    confidence: { title: 'Frases de confiança' },
+    future_self: { title: 'Mensagem do futuro' },
+    healthy: { title: 'Seu corpo saudável' },
+    self_love: { title: 'Frases de amor-próprio' },
+    optimism: { title: 'Seu otimismo' },
+    smile: { title: 'Seu sorriso' },
+    angels: { title: 'Dos seus anjos' },
+    self_care: { title: 'Frases de autocuidado' },
+  },
+
+  messages: {
+    'amazing.9': 'Você tem um jeito único e especial de olhar para o mundo.',
+    'creativity.4': 'Seu espírito criativo é uma lufada de ar fresco.',
+    'resilience.6': 'A forma como você se reergue depois de um tropeço é incrível.',
+    'kindness.14': 'Sua bondade é um presente que nunca para de dar.',
+    'optimism.5': 'Seu olhar otimista contagia e levanta quem está por perto.',
+    'optimism.11': 'Seu espírito otimista é um presente que você dá ao mundo.',
+    'confidence.168': 'Sua energia apresenta você antes mesmo de você falar.',
+    'soul.7': 'Sua alma dança de alegria e espalha felicidade por onde passa.',
+  },
+};

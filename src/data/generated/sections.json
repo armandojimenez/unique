@@ -1,0 +1,88 @@
+{
+  "en": {
+    "categoriesTitle": "Categories",
+    "categories": [
+      { "key": "everything", "title": "Your Uniqueness" },
+      { "key": "favorites", "title": "My Favorites" },
+      { "key": "mine", "title": "My Own Messages" },
+      { "key": "beauty", "title": "Your Beauty" },
+      { "key": "resilience", "title": "Your Resilience" },
+      { "key": "smart", "title": "Your Intelligence" },
+      { "key": "kindness", "title": "Your Kindness" },
+      { "key": "creativity", "title": "Your Creativity" }
+    ],
+    "card": {
+      "quote": {
+        "text": "You have a unique and special way of looking at the world."
+      },
+      "label": "Your Amazingness"
+    },
+    "reminders": {
+      "pill": "Your creative spirit is a breath of fresh air.",
+      "notifications": [
+        {
+          "text": "Your ability to bounce back from setbacks is incredible.",
+          "when": "now"
+        },
+        {
+          "text": "Your kindness is a gift that keeps on giving.",
+          "when": "11:11 AM"
+        }
+      ]
+    },
+    "widgets": {
+      "medium": "Your ability to bounce back from setbacks is incredible.",
+      "smallDark": "Your energy introduces you before you even speak.",
+      "smallPink": "Your kindness is a gift that keeps on giving.",
+      "medium2": "Your soul dances with joy, spreading happiness wherever you go."
+    },
+    "themes": {
+      "title": "Choose your art",
+      "make": "Create custom theme"
+    },
+    "share": {
+      "quote": {
+        "text": "Your energy introduces you before you even speak."
+      },
+      "story": "Story",
+      "square": "Square",
+      "save": "Save",
+      "copy": "Copy",
+      "more": "More"
+    },
+    "myown": {
+      "title": "My Messages",
+      "add": "Add",
+      "backup": "Backup & Restore",
+      "added": "Added",
+      "dialogTitle": "Add your inspiration!",
+      "authorHint": "Author (Optional)",
+      "save": "Save"
+    },
+    "practice": {
+      "quote": {
+        "text": "Your kindness is a gift that keeps on giving."
+      },
+      "day": "Day",
+      "night": "Night"
+    },
+    "bands": [
+      {
+        "text": "Your creative spirit is a breath of fresh air.",
+        "author": null
+      },
+      {
+        "text": "Your optimistic outlook is contagious, uplifting those around you.",
+        "author": null
+      },
+      {
+        "text": "Your soul dances with joy, spreading happiness wherever you go.",
+        "author": null
+      },
+      {
+        "text": "Your optimistic spirit is a gift that you share with the world.",
+        "author": null
+      }
+    ]
+  }
+}

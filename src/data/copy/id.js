@@ -1,0 +1,111 @@
+// Bahasa Indonesia — informal "kamu", the register Indonesian self-care
+// apps use.
+//
+// Indonesian has no grammatical gender, so §3–5 of the expansion plan costs
+// nothing here. The care needed is register: "Anda" would make the app read
+// like a bank, so every line stays on "kamu".
+export default {
+  hook: { hero: 'Pujian yang membuatmu\nmerasa diperhatikan' },
+  reminders: {
+    hero: 'Kata-kata baik\nsepanjang hari',
+    date: 'Senin, 1 Januari',
+    time: '11:11',
+    whens: ['sekarang', '11:11', '09.30'],
+  },
+  categories: { hero: 'Satu pujian untuk\nsetiap sisi dirimu' },
+  widgets: {
+    hero: 'Nilai dirimu di\nlayar utama',
+    heroAndroid: 'Nilai dirimu di\nlayar utama',
+  },
+  themes: { hero: 'Buat setiap pesan\nmencerminkan dirimu', sample: 'Aa' },
+  dark: { hero: 'Menemanimu\nsiang dan malam' },
+  myown: {
+    hero: 'Tulis kata-kata\nyang ingin kamu baca',
+    dialogTyped: 'Kehadiranmu membuat orang lain merasa berarti.',
+    rows: [
+      { text: 'Aku berhak merayakan sejauh apa aku sudah melangkah.', date: '22 Juli' },
+      { text: 'Beristirahat bukan berarti menyerah.', date: '15 Juli' },
+      {
+        text: 'Kamu layak menerima semua cinta yang kamu bagikan.',
+        author: 'Ibu',
+        date: '7 Juli',
+      },
+      { text: 'Kelembutanku tidak pernah membuatku lemah.', date: '27 Juni' },
+      { text: 'Aku suka dengan diriku yang sedang tumbuh ini.', date: '18 Juni' },
+      {
+        text: 'Berbaik hati pada diri sendiri juga terhitung kebaikan.',
+        author: 'Sam',
+        date: '9 Juni',
+      },
+      { text: 'Aku tidak perlu mengemis persetujuan dari diriku sendiri.', date: '1 Juni' },
+    ],
+  },
+  share: { hero: 'Ubah pujian jadi\nkarya untuk dibagikan' },
+  practice: { hero: 'Jadikan mencintai diri\nkebiasaan harian' },
+  proof: {
+    hero: 'Disayangi mereka\nyang membutuhkannya',
+    heroAndroid: 'Disayangi orang\ndi seluruh dunia',
+    storeIos: 'di App Store',
+    storeAndroid: 'di Google Play',
+    familyTitle: 'Dibuat dengan cinta, bersama keluarga Believe',
+    familySub: 'Lebih dari 1 juta unduhan di seluruh aplikasi kami',
+  },
+  feature: { hero: 'Pujian harian\nuntuk mencintai diri', qOpen: '“', qClose: '”' },
+
+  ui: {
+    app_name: 'Unique',
+    categories: 'Kategori',
+    reset: 'Atur ulang',
+    themes: 'Pilih gayamu',
+    make_theme: 'Buat tema sendiri',
+    settings: { my_favorites_title: 'Favoritku' },
+    my_own: {
+      title: 'Pesanku',
+      add: 'Tambah',
+      added: 'Ditambahkan: {}',
+      add_dialog_title: 'Tambahkan inspirasimu!',
+      save: 'Simpan',
+      author_hint: 'Penulis (opsional)',
+    },
+    backup: { backup_and_restore_button: 'Cadangkan & pulihkan' },
+    share: {
+      story: 'Story',
+      square: 'Persegi',
+      save_image: 'Simpan',
+      copy_text: 'Salin',
+      more: 'Lainnya',
+    },
+    magic_center: { practice: { day: 'Siang', night: 'Malam' } },
+    everything: { title: 'Keunikanmu' },
+    favorites: { title: 'Favoritku' },
+    mine: { title: 'Pesan buatanku' },
+    smart: { title: 'Kecerdasanmu' },
+    resilience: { title: 'Ketangguhanmu' },
+    beauty: { title: 'Kecantikanmu' },
+    kindness: { title: 'Kebaikan hatimu' },
+    in_love: { title: 'Kata-kata cinta' },
+    amazing: { title: 'Sisi luar biasamu' },
+    gratitude: { title: 'Rasa syukurmu' },
+    creativity: { title: 'Kreativitasmu' },
+    soul: { title: 'Jiwamu yang abadi' },
+    confidence: { title: 'Kutipan percaya diri' },
+    future_self: { title: 'Pesan dari masa depan' },
+    healthy: { title: 'Tubuh sehatmu' },
+    self_love: { title: 'Kutipan untuk mencintai diri' },
+    optimism: { title: 'Optimismemu' },
+    smile: { title: 'Senyummu' },
+    angels: { title: 'Dari malaikatmu' },
+    self_care: { title: 'Kutipan perawatan diri' },
+  },
+
+  messages: {
+    'amazing.9': 'Cara kamu memandang dunia itu unik dan istimewa.',
+    'creativity.4': 'Jiwa kreatifmu terasa seperti embusan udara segar.',
+    'resilience.6': 'Caramu bangkit setelah terjatuh sungguh menakjubkan.',
+    'kindness.14': 'Kebaikan hatimu adalah hadiah yang tak pernah habis diberikan.',
+    'optimism.5': 'Optimismemu menular dan mengangkat semangat orang di sekitarmu.',
+    'optimism.11': 'Jiwa optimismu adalah hadiah yang kamu berikan kepada dunia.',
+    'confidence.168': 'Energimu sudah memperkenalkanmu sebelum kamu bicara.',
+    'soul.7': 'Jiwamu menari gembira dan menyebarkan bahagia ke mana pun kamu pergi.',
+  },
+};

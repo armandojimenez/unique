@@ -1,0 +1,21 @@
+{
+  "name": "unique-landing",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Landing page for Unique - Daily Compliments (armandojimenez.dev/unique)",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "og": "node scripts/generate-social-cards.mjs",
+    "qa": "node scripts/verify-locales.mjs && node scripts/qa-sweep.mjs",
+    "qa:locales": "node scripts/verify-locales.mjs"
+  },
+  "dependencies": {
+    "astro": "^7.1.3"
+  }
+}

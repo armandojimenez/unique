@@ -1,0 +1,290 @@
+---
+// Unique's version of Motiv's landing hero: the approved reminders lock
+// screen first, with two live notification cards breaking out of the phone.
+import LockPhone from './LockPhone.astro';
+import { deck, landing } from '../i18n/index.mjs';
+import { asset } from '../config.mjs';
+import { heroCards } from '../data/localized-screens.mjs';
+
+const { locale = 'en' } = Astro.props;
+const d = deck(locale);
+const s = landing(locale);
+const data = heroCards[locale] ?? heroCards.en;
+const initial = data.cards.slice(1, 3);
+const payload = JSON.stringify({ cards: data.cards, whens: data.whens });
+---
+
+<div class="hero-art" role="img" aria-label={s.hero.artLabel}>
+  <div class="space" aria-hidden="true">
+    <img
+      class="butterfly"
+      src={asset('/app/images/svgIcons/unique.svg')}
+      alt=""
+      width="300"
+      height="300"
+      fetchpriority="high"
+    />
+
+    <div class="phone-wrap">
+      <div class="phone-scale">
+        <LockPhone date={d.reminders.date} time={d.reminders.time} pill={data.pill} />
+      </div>
+    </div>
+
+    <div class="stack" data-hero-stack data-cards={payload}>
+      {
+        initial.map((card, index) => (
+          <article class={`hero-card slot-${index}`}>
+            <img
+              src={asset('/app/images/icons/alternate_app_icons/default.png')}
+              alt=""
+              width="72"
+              height="72"
+            />
+            <div class="card-copy">
+              <div class="card-top">
+                <strong>{data.appName}</strong>
+                <span data-when>{data.whens[index % data.whens.length]}</span>
+              </div>
+              <p data-body>{card.text}</p>
+            </div>
+          </article>
+        ))
+      }
+      <template>
+        <article class="hero-card slot-enter">
+          <img
+            src={asset('/app/images/icons/alternate_app_icons/default.png')}
+            alt=""
+            width="72"
+            height="72"
+          />
+          <div class="card-copy">
+            <div class="card-top">
+              <strong>{data.appName}</strong>
+              <span data-when></span>
+            </div>
+            <p data-body></p>
+          </div>
+        </article>
+      </template>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hero-art {
+    --hero-width: 560;
+    position: relative;
+    width: calc(var(--hero-width) * 1px);
+    height: calc(var(--hero-width) * 1.33px);
+  }
+
+  .space {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 640px;
+    height: 850px;
+    transform: scale(calc(var(--hero-width) / 640));
+    transform-origin: top left;
+  }
+
+  .butterfly {
+    position: absolute;
+    top: 330px;
+    left: -60px;
+    width: 300px;
+    height: 300px;
+    opacity: 0.09;
+    transform: rotate(-10deg);
+  }
+
+  .phone-wrap {
+    position: absolute;
+    top: 6px;
+    left: 86px;
+    width: 504px;
+    height: 1068px;
+    transform: rotate(-5deg);
+    transform-origin: 50% 20%;
+  }
+
+  .phone-scale {
+    transform: scale(0.46);
+    transform-origin: top left;
+  }
+
+  .stack {
+    position: absolute;
+    top: 424px;
+    left: 18px;
+    z-index: 15;
+    width: 604px;
+    height: 380px;
+  }
+
+  .hero-card {
+    position: absolute;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    gap: 21px;
+    min-height: 132px;
+    padding: 24px 28px;
+    border: 1px solid rgba(255, 255, 255, 0.86);
+    border-radius: 27px;
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 14px 32px rgba(43, 7, 24, 0.34);
+    transition: transform 700ms cubic-bezier(0.22, 0.8, 0.3, 1),
+      opacity 550ms ease;
+  }
+
+  .hero-card > img {
+    flex: 0 0 auto;
+    width: 72px;
+    height: 72px;
+    border-radius: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16);
+    object-fit: cover;
+  }
+
+  .card-copy {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    color: #24131b;
+  }
+
+  .card-top strong {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .card-top span {
+    color: #665b61;
+    font-size: 17px;
+  }
+
+  .hero-card p {
+    margin-top: 5px;
+    color: #2e1821;
+    font-family: var(--font-serif);
+    font-size: 28px;
+    line-height: 1.28;
+  }
+
+  .slot-enter {
+    z-index: 4;
+    opacity: 0;
+    transform: translateY(-30px) rotate(-2deg) scale(0.97);
+  }
+
+  .slot-0 {
+    z-index: 3;
+    opacity: 1;
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  .slot-1 {
+    z-index: 2;
+    opacity: 1;
+    transform: translateY(158px) rotate(1.6deg);
+  }
+
+  .slot-2 {
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(310px) rotate(-0.6deg);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .butterfly {
+      animation: breathe 8s ease-in-out infinite;
+    }
+  }
+
+  @keyframes breathe {
+    50% {
+      transform: translate(10px, -15px) rotate(-4deg);
+    }
+  }
+
+  @media (max-width: 1120px) {
+    .hero-art {
+      --hero-width: 470;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .hero-art {
+      --hero-width: 420;
+    }
+  }
+
+  @media (max-width: 470px) {
+    .hero-art {
+      --hero-width: 330;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .hero-art {
+      --hero-width: 272;
+    }
+  }
+</style>
+
+<script>
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  for (const stack of document.querySelectorAll('[data-hero-stack]')) {
+    const raw = (stack as HTMLElement).dataset.cards;
+    const template = stack.querySelector('template');
+    if (!raw || !template || reduced) continue;
+
+    const data = JSON.parse(raw);
+    let index = 3;
+    let timer: ReturnType<typeof setInterval> | null = null;
+
+    const cycle = () => {
+      if (document.hidden || stack.querySelectorAll('.hero-card').length > 3) return;
+      const node = template.content.firstElementChild!.cloneNode(true) as HTMLElement;
+      const entry = data.cards[index % data.cards.length];
+      node.querySelector('[data-body]')!.textContent = entry.text;
+      node.querySelector('[data-when]')!.textContent =
+        data.whens[index % data.whens.length];
+      index += 1;
+      stack.append(node);
+      void node.offsetHeight;
+      for (const card of stack.querySelectorAll('.hero-card')) {
+        if (card === node) continue;
+        if (card.classList.contains('slot-1')) {
+          card.classList.replace('slot-1', 'slot-2');
+          setTimeout(() => card.remove(), 800);
+        } else if (card.classList.contains('slot-0')) {
+          card.classList.replace('slot-0', 'slot-1');
+        }
+      }
+      node.classList.replace('slot-enter', 'slot-0');
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !timer) timer = setInterval(cycle, 4600);
+        if (!entry.isIntersecting && timer) {
+          clearInterval(timer);
+          timer = null;
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(stack);
+  }
+</script>

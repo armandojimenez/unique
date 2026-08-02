@@ -1,0 +1,231 @@
+---
+// Unique's core compliment experience, ported from the approved hook slide.
+import FeatureSection from './FeatureSection.astro';
+import Phone from './Phone.astro';
+import { deck, landing } from '../i18n/index.mjs';
+import { asset } from '../config.mjs';
+import { sections } from '../data/localized-screens.mjs';
+
+const { locale = 'en' } = Astro.props;
+const d = deck(locale);
+const s = landing(locale);
+const sec = sections[locale];
+---
+
+<FeatureSection id="features" title={d.hook.hero} body={s.sections.cards.body} tone="light">
+  <div class="scene" role="img" aria-label={s.sections.cards.artLabel}>
+    <div class="space" aria-hidden="true">
+      <div class="phone-scale">
+        <Phone frame="light" status="dark">
+          <div class="home-screen">
+            <img
+              class="home-mark"
+              src={asset('/app/images/svgIcons/unique_alt_light_en.svg')}
+              alt="Unique"
+              width="128"
+              height="38"
+              loading="lazy"
+            />
+            <img class="home-bird" src={asset('/app/images/svgIcons/unique.svg')} alt="" width="380" height="380" loading="lazy" />
+            <svg class="nav" width="392" height="26" viewBox="0 0 392 26" fill="#2F2F30">
+              <g transform="translate(30 0)"><path d="M0 0h9v9H0zM12 0h9v9h-9zM0 12h9v9H0zM12 12h9v9h-9z"/></g>
+              <g transform="translate(126 1) scale(1)"><rect x="0" y="8" width="3" height="6" rx="1"/><rect x="4" y="5" width="3.4" height="12" rx="1.2"/><rect x="8.6" y="9" width="7" height="3.4"/><rect x="16.4" y="5" width="3.4" height="12" rx="1.2"/><rect x="20.6" y="8" width="3" height="6" rx="1"/></g>
+              <g transform="translate(232 1)"><path d="M1.5 0h13a1.5 1.5 0 0 1 1.5 1.5V4a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 4V1.5A1.5 1.5 0 0 1 1.5 0zM18 1.5h.5A1.5 1.5 0 0 1 20 3v3.5A1.5 1.5 0 0 1 18.5 8H11a1 1 0 0 0-1 1v1.5H8V9a3 3 0 0 1 3-3h7zM8 12h2v6a1 1 0 0 1-2 0z"/></g>
+              <g transform="translate(338 0)"><circle cx="10" cy="6" r="4.4"/><path d="M10 12c4 0 7 2.3 7 5.4 0 .6-.5 1.1-1.1 1.1H4.1A1.1 1.1 0 0 1 3 17.4C3 14.3 6 12 10 12z"/></g>
+            </svg>
+          </div>
+        </Phone>
+      </div>
+
+      <!-- The carousel deck, canvas-level so it breaks the bezel -->
+      <div class="deck deck-l"></div>
+      <div class="deck deck-r"></div>
+      <div class="card-wrap">
+        <div class="card">
+          <div class="cat">- {sec.card.label} -</div>
+          <div class="q-box">
+            <p class="q">{sec.card.quote.text}</p>
+            {sec.card.quote.author && <p class="a">- {sec.card.quote.author}</p>}
+          </div>
+          <div class="bar">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#7C0E36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5v12"/><path d="M8.2 6 12 2.5 15.8 6"/><path d="M7.5 9.5H6a1.5 1.5 0 0 0-1.5 1.5v8.5A1.5 1.5 0 0 0 6 21h12a1.5 1.5 0 0 0 1.5-1.5V11A1.5 1.5 0 0 0 18 9.5h-1.5"/></svg>
+            <svg class="heart" width="37" height="37" viewBox="0 0 24 24" fill="#A5124A" stroke="#A5124A" stroke-width="1.8" stroke-linejoin="round"><path d="M12 20.3S4.9 15.9 2.6 11.6C.9 8.4 2.8 4.9 6.1 4.9c1.9 0 3.5 1 4.4 2.5.4.7 1.4.7 1.8 0 .9-1.5 2.5-2.5 4.4-2.5 3.3 0 5.2 3.5 3.5 6.7C18 15.9 12 20.3 12 20.3z"/></svg>
+            <svg width="31" height="31" viewBox="0 0 24 24" fill="none" stroke="#7C0E36" stroke-width="1.7" stroke-linecap="round"><path d="M3 12s3.4-6 9-6 9 6 9 6-3.4 6-9 6-9-6-9-6z"/><circle cx="12" cy="12" r="2.7"/><path d="M4 4l16 16"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</FeatureSection>
+
+<style>
+  .scene {
+    --fw: 400;
+    width: calc(var(--fw) * 1px);
+    height: calc(var(--fw) * 1.62px);
+    position: relative;
+  }
+
+  .space {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 504px;
+    height: 1068px;
+    transform: scale(calc(var(--fw) / 504));
+    transform-origin: top left;
+  }
+
+  .phone-scale {
+    transform: scale(0.46);
+    transform-origin: top left;
+  }
+
+  /* ── In-screen (440pt logical space) ── */
+  .home-screen {
+    position: absolute;
+    inset: 0;
+    background: #ffffff;
+  }
+
+  .home-mark {
+    position: absolute;
+    top: 68px;
+    left: 50%;
+    width: 128px;
+    height: auto;
+    transform: translateX(-50%);
+  }
+
+  /* HomeAnimal: the faint centered butterfly from Unique. */
+  .home-bird {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    height: 380px;
+    opacity: 0.045;
+  }
+
+  .nav {
+    position: absolute;
+    left: 24px;
+    bottom: 24px;
+    opacity: 0.95;
+  }
+
+  /* ── Canvas-space card stack (breaks the bezel) ──
+     Card slot from the deck: 414x736pt at (13,134) in the 440pt screen;
+     screen origin in scene space = bezel 26*0.46 ≈ 12px; pt→scene scale =
+     2.37273*0.46 = 1.09146. */
+  .card-wrap,
+  .deck {
+    position: absolute;
+    width: 414px;
+    height: 736px;
+    transform-origin: center;
+  }
+
+  .card-wrap {
+    left: 26px;
+    top: 158px;
+    transform: scale(1.09146);
+    z-index: 14;
+  }
+
+  .deck {
+    left: 26px;
+    top: 158px;
+    border-radius: 10px;
+    box-shadow: 0 14px 34px rgba(18, 12, 44, 0.35);
+  }
+
+  .deck-l {
+    background: #d8f4e8;
+    transform: translate(-50px, -13px) scale(1.09146) rotate(-6.5deg);
+    z-index: 12;
+  }
+
+  .deck-r {
+    background: #dcecf9;
+    transform: translate(50px, 9px) scale(1.09146) rotate(6deg);
+    z-index: 13;
+  }
+
+  .card {
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 30px 70px rgba(18, 12, 44, 0.45);
+    background: linear-gradient(180deg, #ae1451 0%, #780b34 100%);
+  }
+
+  .cat {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: var(--font-serif);
+    font-size: 30px;
+    color: #ffffff;
+    white-space: nowrap;
+  }
+
+  .q-box {
+    position: absolute;
+    inset: 99px 30px 138px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .q {
+    text-align: center;
+    font-family: var(--font-serif);
+    font-size: 49px;
+    line-height: 1.4;
+    color: #ffffff;
+  }
+
+  .a {
+    margin-top: 15px;
+    text-align: center;
+    font-family: var(--font-serif);
+    font-size: 27px;
+    color: #ffffff;
+    white-space: nowrap;
+  }
+
+  /* The approved floating action menu, with the heart already saved. */
+  .bar {
+    position: absolute;
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 0;
+  }
+
+  .bar svg {
+    width: 54px;
+    height: 54px;
+    padding: 14px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 8px 22px rgba(59, 16, 34, 0.2);
+  }
+
+  @media (max-width: 1120px) {
+    .scene { --fw: 350; }
+  }
+  @media (max-width: 470px) {
+    .scene { --fw: 300; }
+  }
+</style>

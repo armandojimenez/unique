@@ -1,0 +1,178 @@
+---
+// The approved Unique reminders lock screen, wrapped in the app's gold
+// marketing bezel. The landing hero scales this 1096px composition down.
+import { asset } from '../config.mjs';
+
+const { date, time = '11:11', pill = '' } = Astro.props;
+---
+
+<div class="gold-rim">
+  <div class="bezel">
+    <div class="screen">
+      <div class="logical">
+        <img
+          class="wallpaper"
+          src={asset('/img/tool/reminders-bg.webp')}
+          alt=""
+          width="440"
+          height="956"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <div class="shade"></div>
+        <div class="status">
+          <span>{time}</span>
+          <svg
+            width="78"
+            height="14"
+            viewBox="0 0 78 14"
+            fill="#fff"
+            aria-hidden="true"
+          >
+            <rect x="0" y="9" width="3.4" height="5" rx="1"></rect>
+            <rect x="5.4" y="6.5" width="3.4" height="7.5" rx="1"></rect>
+            <rect x="10.8" y="4" width="3.4" height="10" rx="1"></rect>
+            <rect x="16.2" y="1.5" width="3.4" height="12.5" rx="1"></rect>
+            <path d="M33 4.6a10.4 10.4 0 0 1 13.2 0l-1.9 2.2a7.4 7.4 0 0 0-9.4 0L33 4.6Z"></path>
+            <path d="M35.6 7.6a6.4 6.4 0 0 1 8 0l-1.9 2.2a3.4 3.4 0 0 0-4.2 0l-1.9-2.2Z"></path>
+            <circle cx="39.6" cy="11.8" r="1.9"></circle>
+            <rect x="55" y="1.5" width="20" height="11" rx="3.5" fill="none" stroke="#fff" stroke-opacity="0.58"></rect>
+            <rect x="57" y="3.5" width="16" height="7" rx="1.8"></rect>
+            <path d="M76.5 5.2v3.6c1-.3 1.5-1 1.5-1.8s-.5-1.5-1.5-1.8Z" fill-opacity="0.58"></path>
+          </svg>
+        </div>
+        <div class="date">{date}</div>
+        <div class="clock">{time}</div>
+        <div class="pill">{pill}</div>
+        <div class="home"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .gold-rim {
+    width: 1096px;
+    padding: 7px;
+    border-radius: 159px;
+    background: linear-gradient(
+      150deg,
+      #f0dca8 0%,
+      #c9a961 26%,
+      #8c7038 52%,
+      #e4ce9a 74%,
+      #b4934f 100%
+    );
+    box-shadow: 0 40px 90px rgba(48, 4, 22, 0.34);
+  }
+
+  .bezel {
+    padding: 26px;
+    border-radius: 152px;
+    background: #0d0d0f;
+  }
+
+  .screen {
+    position: relative;
+    width: 1030px;
+    height: 2238px;
+    overflow: hidden;
+    border-radius: 126px;
+    background: #150a1f;
+  }
+
+  .logical {
+    position: relative;
+    width: 440px;
+    height: 956px;
+    overflow: hidden;
+    transform: scale(2.34091);
+    transform-origin: top left;
+  }
+
+  .wallpaper,
+  .shade {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .wallpaper {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .shade {
+    background: linear-gradient(
+      180deg,
+      rgba(7, 5, 11, 0.28),
+      rgba(7, 5, 11, 0.02) 42%,
+      rgba(7, 5, 11, 0.2)
+    );
+  }
+
+  .status {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 58px;
+    padding: 6px 40px 0 46px;
+    color: #fff;
+  }
+
+  .status span {
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .date,
+  .clock,
+  .pill {
+    position: absolute;
+    right: 0;
+    left: 0;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.34);
+  }
+
+  .date {
+    top: 104px;
+    font-size: 19px;
+    font-weight: 600;
+  }
+
+  .clock {
+    top: 124px;
+    font-size: 96px;
+    font-weight: 600;
+    letter-spacing: -3px;
+  }
+
+  .pill {
+    top: 252px;
+    padding: 0 20px;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-wrap: balance;
+  }
+
+  .home {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    width: 150px;
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.82);
+    transform: translateX(-50%);
+  }
+</style>

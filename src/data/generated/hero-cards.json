@@ -1,0 +1,21 @@
+{
+  "en": {
+    "appName": "Unique",
+    "whens": ["now", "11:11 AM", "9:30 AM"],
+    "pill": "Your creative spirit is a breath of fresh air.",
+    "cards": [
+      {
+        "text": "You have a unique and special way of looking at the world."
+      },
+      {
+        "text": "Your ability to bounce back from setbacks is incredible."
+      },
+      {
+        "text": "Your kindness is a gift that keeps on giving."
+      },
+      {
+        "text": "Your energy introduces you before you even speak."
+      }
+    ]
+  }
+}

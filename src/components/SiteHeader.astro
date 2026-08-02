@@ -1,0 +1,297 @@
+---
+import {
+  landing,
+  PUBLISHED_LOCALES,
+  ENDONYMS,
+  HREFLANG,
+  localeUrl,
+} from '../i18n/index.mjs';
+import { asset } from '../config.mjs';
+import LangSelect from './LangSelect.astro';
+
+const { locale = 'en' } = Astro.props;
+const s = landing(locale);
+const wordmark = asset('/app/images/svgIcons/unique_alt_light_en.svg');
+---
+
+<header class="site-header" data-header>
+  <div class="container inner">
+    <a class="brand" href="#top" aria-label="Unique">
+      <img src={wordmark} alt="Unique" width="118" height="36" />
+    </a>
+    <nav aria-label={s.a11y.mainNav}>
+      <a class="nav-link" href="#features">{s.nav.features}</a>
+      <a class="nav-link" href="#faq">{s.nav.faq}</a>
+      <a class="nav-link" href="#" data-contact-open>{s.nav.contact}</a>
+      {PUBLISHED_LOCALES.length > 1 && (
+        <LangSelect locale={locale} label={s.a11y.language} />
+      )}
+      <a class="btn-pill" href="#download">{s.nav.download}</a>
+      <button
+        class="burger"
+        type="button"
+        data-menu-open
+        aria-label={s.a11y.menu}
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+      >
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div id="mobile-menu" class="sheet-wrap" data-menu-sheet hidden>
+  <button type="button" class="sheet-backdrop" data-menu-close aria-label={s.a11y.close}></button>
+  <div class="sheet" role="dialog" aria-modal="true" aria-label={s.a11y.menu}>
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <nav class="sheet-nav" aria-label={s.a11y.mainNav}>
+      <a href="#features" data-menu-close>{s.nav.features}</a>
+      <a href="#faq" data-menu-close>{s.nav.faq}</a>
+      <a href="#" data-contact-open data-menu-close>{s.nav.contact}</a>
+      <a class="btn-pill" href="#download" data-menu-close>{s.nav.download}</a>
+    </nav>
+    {PUBLISHED_LOCALES.length > 1 && (
+      <div class="sheet-langs">
+        <span class="sheet-label">{s.a11y.language}</span>
+        <div class="sheet-grid">
+          {PUBLISHED_LOCALES.map((candidate) => (
+            <a
+              href={localeUrl(candidate)}
+              lang={HREFLANG[candidate]}
+              hreflang={HREFLANG[candidate]}
+              aria-current={candidate === locale ? 'page' : undefined}
+            >
+              {ENDONYMS[candidate]}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(59, 16, 34, 0.08);
+    background: rgba(255, 247, 250, 0.86);
+    backdrop-filter: blur(16px) saturate(1.35);
+    -webkit-backdrop-filter: blur(16px) saturate(1.35);
+  }
+
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+
+  .brand {
+    display: block;
+  }
+
+  .brand img {
+    width: 118px;
+    height: auto;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nav-link {
+    color: var(--ink-soft);
+    font-size: 15px;
+    text-decoration: none;
+  }
+
+  .nav-link:hover {
+    color: var(--raspberry);
+  }
+
+  .burger {
+    display: none;
+    padding: 8px;
+    border: 0;
+    color: var(--ink);
+    background: none;
+    cursor: pointer;
+  }
+
+  .sheet-wrap {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+  }
+
+  .sheet-wrap[hidden] {
+    display: none;
+  }
+
+  .sheet-backdrop {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: rgba(42, 11, 26, 0.48);
+    backdrop-filter: blur(3px);
+    cursor: pointer;
+  }
+
+  .sheet {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: min(520px, 100%);
+    margin-inline: auto;
+    padding: 14px 22px calc(28px + env(safe-area-inset-bottom));
+    border-radius: 24px 24px 0 0;
+    background: var(--blush-0);
+    box-shadow: 0 -24px 60px rgba(42, 11, 26, 0.3);
+    overscroll-behavior: contain;
+  }
+
+  .sheet-handle {
+    width: 42px;
+    height: 4px;
+    margin: 0 auto 16px;
+    border-radius: 999px;
+    background: rgba(59, 16, 34, 0.2);
+  }
+
+  .sheet-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .sheet-nav a {
+    padding: 12px 4px;
+    color: var(--ink);
+    font-size: 17px;
+    text-decoration: none;
+  }
+
+  .sheet-nav .btn-pill {
+    margin-top: 8px;
+    color: #fff;
+  }
+
+  .sheet-langs {
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(59, 16, 34, 0.1);
+  }
+
+  .sheet-label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--ink-faint);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .sheet-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px 16px;
+  }
+
+  .sheet-grid a {
+    padding: 8px 4px;
+    border-radius: 8px;
+    color: var(--ink-soft);
+    font-size: 15px;
+    text-decoration: none;
+  }
+
+  .sheet-grid a[aria-current='page'] {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  @media (max-width: 900px) {
+    .nav-link {
+      display: none;
+    }
+
+    nav {
+      gap: 10px;
+    }
+
+    .burger {
+      display: inline-flex;
+    }
+  }
+
+  @media (min-width: 901px) {
+    .sheet-wrap {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const sheet = document.querySelector('[data-menu-sheet]') as HTMLElement | null;
+  const opener = document.querySelector('[data-menu-open]') as HTMLButtonElement | null;
+
+  if (sheet && opener) {
+    const panel = sheet.querySelector('.sheet') as HTMLElement;
+    const focusables = () =>
+      Array.from(panel.querySelectorAll<HTMLElement>('a[href], button:not([disabled])'));
+    let lastFocus: HTMLElement | null = null;
+
+    const setOpen = (open: boolean) => {
+      sheet.hidden = !open;
+      opener.setAttribute('aria-expanded', String(open));
+      document.documentElement.style.overflow = open ? 'hidden' : '';
+      if (open) {
+        lastFocus = document.activeElement as HTMLElement;
+        focusables()[0]?.focus();
+      } else {
+        (lastFocus ?? opener).focus();
+      }
+    };
+
+    opener.addEventListener('click', () => setOpen(sheet.hidden));
+    for (const close of sheet.querySelectorAll('[data-menu-close]')) {
+      close.addEventListener('click', () => setOpen(false));
+    }
+    document.addEventListener('keydown', (event) => {
+      if (!sheet.hidden && event.key === 'Escape') setOpen(false);
+      if (!sheet.hidden && event.key === 'Tab') {
+        const items = focusables();
+        const first = items[0];
+        const last = items.at(-1);
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }
+    });
+    matchMedia('(min-width: 901px)').addEventListener('change', (event) => {
+      if (event.matches && !sheet.hidden) setOpen(false);
+    });
+  }
+</script>
