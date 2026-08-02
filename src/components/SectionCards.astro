@@ -116,9 +116,9 @@ const sec = sections[locale];
   }
 
   /* ── Canvas-space card stack (breaks the bezel) ──
-     Card slot from the deck: 414x736pt at (13,134) in the 440pt screen;
-     screen origin in scene space = bezel 26*0.46 ≈ 12px; pt→scene scale =
-     2.37273*0.46 = 1.09146. */
+     The 414px card is centered on the 504px phone canvas: (504 - 414) / 2 =
+     45px. Its own scale expands equally from the center, keeping the complete
+     three-card deck aligned with the screen at every responsive scene scale. */
   .card-wrap,
   .deck {
     position: absolute;
@@ -128,14 +128,14 @@ const sec = sections[locale];
   }
 
   .card-wrap {
-    left: 26px;
+    left: 45px;
     top: 158px;
     transform: scale(1.09146);
     z-index: 14;
   }
 
   .deck {
-    left: 26px;
+    left: 45px;
     top: 158px;
     border-radius: 10px;
     box-shadow: 0 14px 34px rgba(18, 12, 44, 0.35);
